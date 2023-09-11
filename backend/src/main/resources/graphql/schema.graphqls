@@ -1,0 +1,35 @@
+
+# All queries must have the matching @QueryMapping definition defined in a Controller class
+type Query {
+#    Basic Query with no Argument
+    authors: [Author]
+    getBooks: [Book]
+#    Query with Arguments. The return type of the query is defined after a ":"
+    authorById(id: ID!): Author
+}
+
+type Author {
+    id: ID!,
+    name: String!
+    books: [Book]
+}
+
+type Book {
+    id: ID!
+    title: String!
+    publisher: String
+}
+
+#----------------#
+
+# Mutations allow you to modify/change the data via GraphQL Query
+type Mutation {
+    addBook(book: BookInput): Book
+}
+
+# "input" is a special type/keyword that defines the input arguments for mutations
+input BookInput {
+    title: String!
+    publisher: String
+    authorId: ID!
+}
